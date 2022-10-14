@@ -1,4 +1,4 @@
-package org.example;
+package org.example.conditions;
 
 /**
  * @author christopherochiengotieno@gmail.com

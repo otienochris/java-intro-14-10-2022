@@ -1,4 +1,4 @@
-package org.example;
+package org.example.modifiers;
 
 /**
  * @author christopherochiengotieno@gmail.com

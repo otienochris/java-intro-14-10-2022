@@ -1,4 +1,4 @@
-package org.example;
+package org.example.operators;
 
 /**
  * Java provides a rich set of operators to manipulate variable. They are group into:

@@ -1,4 +1,6 @@
-package org.example;
+package org.example.oop;
+
+import org.example.oop.Person;
 
 /**
  * @author christopherochiengotieno@gmail.com

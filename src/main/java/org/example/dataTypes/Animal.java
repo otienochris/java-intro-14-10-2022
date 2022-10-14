@@ -1,4 +1,4 @@
-package org.example;
+package org.example.dataTypes;
 
 /**
  * @author christopherochiengotieno@gmail.com
