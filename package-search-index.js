@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"org.example"},{"l":"org.example.conditions"},{"l":"org.example.dataTypes"},{"l":"org.example.io"},{"l":"org.example.loops"},{"l":"org.example.modifiers"},{"l":"org.example.oop"},{"l":"org.example.operators"}]
