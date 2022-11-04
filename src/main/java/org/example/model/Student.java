@@ -1,5 +1,6 @@
 package org.example.model;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 /**
@@ -14,16 +15,32 @@ public class Student {
     private String lastName;
     private Integer academicYear;
     private Integer semester;
+
+    private BigDecimal moneyIn;
     private Boolean hasDoneFinanceRegistration = false;
     private Boolean hasDoneAccommodationRegistration = false;
     private Boolean hasDoneUnitRegistration = false;
 
-    public Student(String registrationNumber, String firstName, String lastName, Integer academicYear, Integer semester) {
+    public Student(String registrationNumber,
+                   String firstName,
+                   String lastName,
+                   Integer academicYear,
+                   Integer semester,
+                   BigDecimal moneyIn) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.academicYear = academicYear;
         this.semester = semester;
         this.registrationNumber = registrationNumber;
+        this.moneyIn = moneyIn;
+    }
+
+    public BigDecimal getMoneyIn() {
+        return moneyIn;
+    }
+
+    public void setMoneyIn(BigDecimal moneyIn) {
+        this.moneyIn = moneyIn;
     }
 
     public String getFirstName() {
@@ -114,6 +131,7 @@ public class Student {
                 ", hasDoneFinanceRegistration=" + hasDoneFinanceRegistration +
                 ", hasDoneAccommodationRegistration=" + hasDoneAccommodationRegistration +
                 ", hasDoneUnitRegistration=" + hasDoneUnitRegistration +
+                ", moneyIn=" + moneyIn +
                 '}';
     }
 }

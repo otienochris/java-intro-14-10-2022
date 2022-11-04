@@ -2,10 +2,13 @@ package org.example;
 
 import org.example.model.Student;
 
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    private static Student student;
+
+    public static void main(String[] args) throws Exception {
 
         int choice = 1;
 
@@ -21,38 +24,73 @@ public class Main {
 
             switch (choice){
                 case 1:
-                    registerStudent(in);
+                    Student registerStudent = registerStudent(in);
                     break;
                 case 2:
-                    System.out.println("Details");
+                    Boolean userFound = viewUserDetails();
                     break;
                 case 3:
-                    System.out.println("Finance");
+                    Boolean hasRegistered = registerForFinance(student);
                     break;
                 case 4:
-                    System.out.println("Accommodation");
+                    Boolean hasRegAcc = registerAccommodation();
                     break;
                 case 5:
-                    System.out.println("Units");
+                    Boolean hasRegUnit = registerForUnits();
                     break;
                 default:
                     choice = 1000;
 
             }
 
-            System.out.println(choice);
-            System.out.flush();
-
         } while (choice != 0);
         in.close();
     }
 
-    private static Student registerStudent(Scanner in) {
+    public static Boolean registerForUnits() {
+        if (student != null &&
+                student.getHasDoneFinanceRegistration() &&
+                student.getHasDoneAccommodationRegistration()){
+            student.setHasDoneUnitRegistration(true);
+        }
+
+        return false;
+    }
+
+    public static Boolean registerAccommodation() {
+        if (student != null && student.getHasDoneFinanceRegistration()){
+            student.setHasDoneAccommodationRegistration(true);
+            return true;
+        }
+        return false;
+    }
+
+    public static Boolean registerForFinance(Student student) throws Exception {
+
+        if (student == null)
+            throw new Exception("Student not found");
+
+        if (student.getMoneyIn().intValue() > 5000){
+            student.setHasDoneFinanceRegistration(true);
+            return true;
+        }
+
+        return false;
+    }
+
+    public static Boolean viewUserDetails() {
+        if (student != null)
+            System.out.println(student);
+        return student != null;
+    }
+
+    public static Student registerStudent(Scanner in) {
         System.out.println("Enter Student Details Below: \n");
         System.out.println("***************************\n");
 
         // get reg no
         System.out.print("Registration Number >> ");
+        in.nextLine();
         String registrationNumber = in.nextLine();
         System.out.println();
 
@@ -76,11 +114,18 @@ public class Main {
         Integer sem = in.nextInt();
         System.out.println();
 
-        Student student = new Student(registrationNumber, firstName, secondName,year, sem);
+        // get initial amount
+        System.out.print("Amount >> ");
+        Integer amount = in.nextInt();
+        System.out.println();
+
+        student = new Student(registrationNumber, firstName, secondName,year, sem, new BigDecimal(amount));
+
+        student.setMoneyIn(new BigDecimal(10000));
         return student;
     }
 
-    private static void getMenu() {
+    public static void getMenu() {
 
         System.out.println("1. Register");
         System.out.println("2. View user details");
